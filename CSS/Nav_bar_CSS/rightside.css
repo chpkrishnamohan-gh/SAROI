@@ -1,0 +1,36 @@
+/* =========================================================
+   NAV BAR ACTION BUTTONS (RIGHT SIDE)
+   ========================================================= */
+.nav-bar-icons {
+    flex: 0 0 auto;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.nav-bar-button {
+    height: 50px;
+    padding: 0 20px;
+
+    background-color: #F2BFA4;
+    border: 1px solid #ccc;
+    border-radius: 25px;
+
+    font-size: 16px;
+    font-weight: bold;
+    color: #5F3B2F;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    cursor: pointer;
+    transition: 0.25s;
+
+    box-shadow: 0 2px 4px rgba(0,0,0,0.12);
+}
+
+.nav-bar-button:hover {
+    background-color: #e9b397;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.18);
+}
