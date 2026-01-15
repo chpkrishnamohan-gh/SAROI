@@ -1,0 +1,8 @@
+CREATE TABLE IF NOT EXISTS images (
+    id TEXT PRIMARY KEY,
+    file_path TEXT NOT NULL,
+    hash TEXT UNIQUE NOT NULL,
+    caption TEXT NOT NULL,
+    embedding BLOB NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
