@@ -16,7 +16,6 @@ import org.springframework.http.MediaType;
 import java.nio.file.Path;
 
 
-@CrossOrigin(origins = "http://localhost:5173")
 @RestController
 @RequestMapping("/api/images")
 public class ImageController {
