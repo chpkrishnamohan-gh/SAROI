@@ -1,8 +1,9 @@
 export default function ImageCard({ image }) {
+  const API_BASE = import.meta.env.VITE_API_BASE_URL;
   return (
     <div className="image-card">
       <img
-        src={`http://localhost:8080/api/images/${image.imageId}`}
+        src={`${API_BASE}/api/images/${image.imageId}`}
         alt={image.caption}
         className="image-img"
       />

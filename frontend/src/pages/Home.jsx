@@ -11,23 +11,41 @@ export default function Home() {
   const [offset, setOffset] = useState(0);
   const [hasMore, setHasMore] = useState(false);
   const [uploading, setUploading] = useState(false);
+  const [searching, setSearching] = useState(false);
+
 
   const fileInputRef = useRef(null);
 
   const runSearch = async (reset = true) => {
-    const res = await searchImages(query, reset ? 0 : offset, LIMIT);
-    const data = res.data;
+  if (!query.trim()) return;
 
-    if (reset) {
-      setImages(data);
-      setOffset(LIMIT);
-    } else {
-      setImages(prev => [...prev, ...data]);
-      setOffset(prev => prev + LIMIT);
+  setSearching(true);
+
+    try {
+      const res = await searchImages(query, reset ? 0 : offset, LIMIT);
+
+      console.log("RAW RESPONSE:", res);
+      console.log("RAW DATA:", res?.data);
+
+      const data = Array.isArray(res?.data) ? res.data : [];
+
+      console.log("FINAL DATA USED:", data);
+
+      if (reset) {
+        setImages(data);
+        setOffset(LIMIT);
+      } else {
+        setImages(prev => [...prev, ...data]);
+        setOffset(prev => prev + LIMIT);
+      }
+
+      setHasMore(data.length === LIMIT);
+    } finally {
+      setSearching(false);
     }
-
-    setHasMore(data.length === LIMIT);
   };
+
+
 
   const handleUploadClick = () => {
     fileInputRef.current.click();
@@ -79,7 +97,7 @@ export default function Home() {
 
       {/* MAIN CONTENT */}
       <div className="main">
-        <ImageGrid images={images} />
+        <ImageGrid images={images} loading={searching} />
 
         {hasMore && (
           <div className="load-more">
